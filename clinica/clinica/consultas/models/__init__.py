@@ -1,2 +1,2 @@
-from paciente import *
-from atendimento import *
+from .paciente import *
+from .atendimento import *

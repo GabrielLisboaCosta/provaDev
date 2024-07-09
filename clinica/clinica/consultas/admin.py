@@ -1,6 +1,6 @@
 from django.contrib import admin
-from clinica.consultas.models import Paciente
-from clinica.consultas.models import Atendimento
+from consultas.models import Paciente
+from consultas.models import Atendimento
 
 # Register your models here.
 admin.site.register(Paciente)
