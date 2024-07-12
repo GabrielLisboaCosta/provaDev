@@ -1,3 +1,5 @@
+import datetime
+
 from django.core.validators import MinLengthValidator
 from django.db import models
 from consultas.models.plano import Plano
@@ -17,4 +19,12 @@ class Atendimento(BaseModel):
     plano = models.CharField(max_length=20, choices=Plano, default=Plano.PUBLIC)
     prioridade = models.CharField(max_length=20, choices=Prioridade, default=Prioridade.LOW)
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+
+    #não consigo testar
+    def gerar_agenda(date_pesquisa: datetime.date):
+        if isinstance(date_pesquisa, datetime.date):
+            datas = [Atendimento.objects.filter(date=date_pesquisa)]
+            return datas.sort()
+        else:
+            return ValueError("Data inválida")
 
