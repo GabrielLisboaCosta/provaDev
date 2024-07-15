@@ -19,7 +19,11 @@ def saudacao(request):
     else:
         mensagem = "boa noite"
 
-    return HttpResponse(f"<h1> {mensagem} </h1>")
+    contexto = {
+        "valor": mensagem
+    }
+
+    return render(request, "base.html", contexto)
 
 
 def parametro(request, nome):
