@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block conteudo %}
+
+    {% if pacientes %}
+        <h2>Paciente:</h2>
+
+        {% for paciente in pacientes %}
+            <p>{{ paciente.id }} - {{ paciente.nome }}</p>
+
+        {% endfor %}
+
+    {% endif %}
+{% endblock conteudo %}

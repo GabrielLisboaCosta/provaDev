@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block conteudo %}
+    <h2>Paciente:</h2>
+    <h3>Nome: </h3>{{ paciente.nome }}
+    <h3>CPF: </h3>{{ paciente.cpf }}
+    <h3>Endereço: </h3>{{ paciente.endereco }}
+    <h3>Cidade: </h3>{{ paciente.cidade }}
+    <h3>Tipo de Alergia: </h3>{{ paciente.tipo_alergia }}
+    <h3>Alergias: </h3>{{ paciente.alergias }}
+    <h3>Telefone: </h3>{{ paciente.telefone }}
+    <h3>Telefone de Emergência: </h3>{{ paciente.tel_emergencia }}
+    <h3>Nome do Contato: </h3>{{ paciente.nome_contato }}
+    <h3>Parentesco: </h3>{{ paciente.parentesco }}
+{% endblock conteudo %}

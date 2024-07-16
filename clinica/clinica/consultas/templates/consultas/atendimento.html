@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block conteudo %}
+    <h2>Atendimento:</h2>
+    <h3>Data: </h3>{{ atendimento.date }}
+    <h3>Hora: </h3>{{ atendimento.hora }}
+    <h3>Motivo: </h3>{{ atendimento.motivo }}
+    <h3>Reconsulta: </h3>{{ atendimento.reconsulta }}
+    <h3>Exames: </h3>{{ atendimento.exames }}
+    <h3>Encaminhamento: </h3>{{ atendimento.encaminhamento }}
+    <h3>Plano: </h3>{{ atendimento.plano }}
+    <h3>Prioridade: </h3>{{ atendimento.prioridade }}
+    <h3>Paciente: </h3>{{ atendimento.paciente.nome_contato }}
+
+{% endblock conteudo %}

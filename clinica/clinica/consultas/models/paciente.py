@@ -3,7 +3,7 @@ from datetime import date
 from django.core.validators import MinLengthValidator
 from django.db import models
 
-
+from consultas.models.plano import Plano
 from consultas.models.base import BaseModel
 from consultas.models.parentesco import Parentesco
 from consultas.models.tipo_alergia import TipoAlergia
@@ -38,14 +38,14 @@ class Paciente(BaseModel):
         else:
             raise TypeError("cpf n é str")
 
-    # def pacientes_por_data_plano(date_pesquisa: date, plano_pesquisa: Atendimento.plano):
-    #     if isinstance(date_pesquisa, date):
-    #         if isinstance(plano_pesquisa, Atendimento.plano):
-    #             return [Atendimento.objects.filter(date=date_pesquisa).filter(plano=plano_pesquisa)]
-    #         else:
-    #             return TypeError("O dado informado não é do tipo plano")
-    #     else:
-    #         return TypeError("O dado informado não é do tipo Date")
+    def pacientes_por_data_plano(date_pesquisa: date, plano_pesquisa: Plano):
+        if isinstance(date_pesquisa, date):
+            if isinstance(plano_pesquisa, Plano):
+                return [Paciente.objects.filter(atendimento__date=date_pesquisa).filter(atendimento__plano=plano_pesquisa)]
+            else:
+                return TypeError("O dado informado não é do tipo plano")
+        else:
+            return TypeError("O dado informado não é do tipo Date")
 
     #não consigo testar
     def pacientes_por_alergia(alergia: tipo_alergia):
