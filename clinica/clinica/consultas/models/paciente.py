@@ -3,6 +3,7 @@ from datetime import date
 from django.core.validators import MinLengthValidator
 from django.db import models
 
+from consultas.models import Atendimento
 from consultas.models.plano import Plano
 from consultas.models.base import BaseModel
 from consultas.models.parentesco import Parentesco
