@@ -3,7 +3,6 @@ from datetime import date
 from django.core.validators import MinLengthValidator
 from django.db import models
 
-from consultas.models import Atendimento
 from consultas.models.plano import Plano
 from consultas.models.base import BaseModel
 from consultas.models.parentesco import Parentesco
@@ -42,7 +41,8 @@ class Paciente(BaseModel):
     def pacientes_por_data_plano(date_pesquisa: date, plano_pesquisa: Plano):
         if isinstance(date_pesquisa, date):
             if isinstance(plano_pesquisa, Plano):
-                return [Paciente.objects.filter(atendimento__date=date_pesquisa).filter(atendimento__plano=plano_pesquisa)]
+                atendimento = [Paciente.objects.filter(atendimento__date=date_pesquisa).filter(atendimento__plano=plano_pesquisa)]
+                return atendimento
             else:
                 return TypeError("O dado informado não é do tipo plano")
         else:
