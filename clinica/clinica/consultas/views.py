@@ -51,7 +51,6 @@ def list_pacientes(request):
     contexto = {
         "pacientes": total
     }
-
     return render(request, "consultas/pacientes.html", contexto)
 
 
