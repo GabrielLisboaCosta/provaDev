@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block conteudo %}
-    <h2>Paciente:</h2>
-    <h3>Nome: </h3>{{ paciente.nome }}
+    <h2> Deletar {{ paciente.nome }}:</h2>
     <h3>CPF: </h3>{{ paciente.cpf }}
     <h3>Endereço: </h3>{{ paciente.endereco }}
     <h3>Cidade: </h3>{{ paciente.cidade }}
@@ -12,9 +11,19 @@
     <h3>Nome do Contato: </h3>{{ paciente.nome_contato }}
     <h3>Parentesco: </h3>{{ paciente.parentesco }}
     <p></p>
+
+    <h3>Esta ação é irreversível! Tem certeza que deseja deletar os dados acima?</h3>
+
+    <form id="paciente" action="{% url 'consultas:delete_pacientes' paciente.id %}"
+            method="post">
+        {% csrf_token %}
+        <input type="hidden" id="paciente_id" name="paciente_id" value="{{ paciente.id }}">
+        <button type="submit" class="btn btn-danger btn-lg" form="paciente"
+                value="Deletar"> Sim, deletar</button>
+        <a class="btn btn-secundary btn-lg" role="button"
+            href="{% url 'consultas:pacientes' %}">Cancelar</a>
+    </form>
     <a class="btn btn-light btn-lg" role="button"
             href="{% url 'consultas:pacientes' %}">Voltar</a>
 
-    <a class="btn btn-light btn-lg" role="button"
-                href="{% url 'consultas:delete_pacientes' paciente.id %}">Deletar</a>
 {% endblock conteudo %}

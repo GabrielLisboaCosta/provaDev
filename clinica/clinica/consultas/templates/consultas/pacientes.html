@@ -6,7 +6,8 @@
 
         {% for paciente in pacientes %}
             <p>{{ paciente.id }} - {{ paciente.nome }}</p>
-
+            <a class="btn btn-secondary btn-lg" role="button"
+            href="{% url 'consultas:read_paciente' paciente.id %}">Detalhar</a>
         {% endfor %}
 
     {% endif %}
