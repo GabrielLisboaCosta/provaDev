@@ -10,6 +10,7 @@ from consultas.models import BaseModel, Paciente
 class Atendimento(BaseModel):
     class Meta:
         abstract = False
+
     date = models.DateField()
     hora = models.TimeField()
     motivo = models.CharField(max_length=200, validators=[MinLengthValidator(10)])
@@ -20,11 +21,10 @@ class Atendimento(BaseModel):
     prioridade = models.CharField(max_length=20, choices=Prioridade, default=Prioridade.LOW)
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
 
-    #não consigo testar
+    # não consigo testar
     def gerar_agenda(date_pesquisa: datetime.date):
         if isinstance(date_pesquisa, datetime.date):
             datas = [Atendimento.objects.filter(date=date_pesquisa)]
             return datas.sort()
         else:
             return ValueError("Data inválida")
-
