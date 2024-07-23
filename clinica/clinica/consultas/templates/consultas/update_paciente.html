@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block conteudo %}
+    <h2>Editar Paciente</h2>
+    <hr>
+    <form id="paciente" action="{% url 'consultas:update_pacientes' paciente.id %}"
+            method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success btn-lg" form="paciente"
+                value="Salvar"> Salvar</button>
+        <button type="reset" class="btn btn-danger btn-lg" form="paciente"
+                value="Reset"> Limpar</button>
+    </form>
+{% endblock conteudo %}

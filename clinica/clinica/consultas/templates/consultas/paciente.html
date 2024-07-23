@@ -17,4 +17,7 @@
 
     <a class="btn btn-light btn-lg" role="button"
                 href="{% url 'consultas:delete_pacientes' paciente.id %}">Deletar</a>
+
+    <a class="btn btn-light btn-lg" role="button"
+                href="{% url 'consultas:update_pacientes' paciente.id %}">Editar</a>
 {% endblock conteudo %}

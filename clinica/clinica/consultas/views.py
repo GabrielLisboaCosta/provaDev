@@ -3,6 +3,7 @@ from datetime import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 
+from consultas.forms import PacienteForm
 from consultas.models import Paciente, Atendimento
 
 
@@ -47,7 +48,7 @@ def paciente(request, id):
 
 
 def list_pacientes(request):
-    total = Paciente.objects.all()
+    total = Paciente.objects.all().order_by('nome')
     contexto = {
         "pacientes": total
     }
@@ -80,3 +81,33 @@ def delete(request, paciente_id):
         contexto = {}
         print(e)
         return render(request, "consultas/pacientes.html", contexto)
+
+
+def create(request):
+    if request.method == 'POST':
+        form = PacienteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('consultas:pacientes')
+    else:
+        form = PacienteForm()
+    contexto = {
+        'form': form
+    }
+    return render(request, 'consultas/create_paciente.html', contexto)
+
+
+def update(request, paciente_id):
+    paci = get_object_or_404(Paciente, pk=paciente_id)
+    if request.method == 'POST':
+        form = PacienteForm(request.POST, instance=paci)
+        if form.is_valid():
+            form.save()
+            return redirect('consultas:pacientes')
+    else:
+        form = PacienteForm(instance=paci)
+    contexto = {
+        'form': form,
+        'paciente': paci,
+    }
+    return render(request, 'consultas/update_paciente.html', contexto)
