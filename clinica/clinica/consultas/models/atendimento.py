@@ -21,6 +21,7 @@ class Atendimento(BaseModel):
     prioridade = models.CharField(max_length=20, choices=Prioridade, default=Prioridade.LOW)
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
 
+
     # não consigo testar
     def gerar_agenda(date_pesquisa: datetime.date):
         if isinstance(date_pesquisa, datetime.date):
