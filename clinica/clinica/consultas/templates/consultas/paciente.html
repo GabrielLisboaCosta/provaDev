@@ -15,9 +15,13 @@
     <a class="btn btn-light btn-lg" role="button"
             href="{% url 'consultas:pacientes' %}">Voltar</a>
 
+    {% if perms.consultas.delete_paciente %}
     <a class="btn btn-light btn-lg" role="button"
-                href="{% url 'consultas:delete_pacientes' paciente.id %}">Deletar</a>
+       href="{% url 'consultas:delete_pacientes' paciente.id %}">Deletar</a>
+    {% endif %}
 
+    {% if perms.consultas.change_paciente %}
     <a class="btn btn-light btn-lg" role="button"
-                href="{% url 'consultas:update_pacientes' paciente.id %}">Editar</a>
+       href="{% url 'consultas:update_pacientes' paciente.id %}">Editar</a>
+    {% endif %}
 {% endblock conteudo %}

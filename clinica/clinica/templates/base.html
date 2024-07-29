@@ -10,7 +10,7 @@
 
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Clínica</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -37,6 +37,15 @@
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
       </ul>
+        {% if user.is_authenticated %}
+          <span class="navbar-text px-2"> Olá, {{ user.first_name }} </span>
+            <form id="logout" method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+              <button type="submit" class="nav-link px-2">Logout</button>
+          </form>
+        {% else %}
+          <a class="nav-link px-2" href="{% url 'login' %}">Login</a>
+        {% endif %}
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -45,7 +54,7 @@
   </div>
 </nav>
 
-    <h1>Aula DEV 1</h1>
+    <h1 style="text-align: center">Aula DEV 1</h1>
   {% block conteudo %}
 
   {% endblock conteudo %}

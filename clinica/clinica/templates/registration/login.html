@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block conteudo %}
+
+    <h1>Login</h1>
+    <br />
+    <form id="login" action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td> {{ form.username.label_tag }} </td>
+                <td class="form-control"> {{ form.username }} </td>
+            </tr>
+            <tr>
+                <td> {{ form.password.label_tag }} </td>
+                <td class="form-control"> {{ form.password }} </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" class="btn btn-sucess btn-lg"
+                            form="login" value="login">Login</button>
+                    <input type="hidden" name="next" value="{{ next }}">
+                </td>
+                <td>
+                    <p><a href="{% url 'password_reset' %}"> Esqueci minha senha</a></p>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br />
+
+{% endblock conteudo %}

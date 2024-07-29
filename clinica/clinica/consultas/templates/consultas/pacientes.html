@@ -2,15 +2,29 @@
 {% block conteudo %}
 
     {% if pacientes %}
-        <h2>Paciente:</h2>
+        <h2>Pacientes:</h2>
 
         {% for paciente in pacientes %}
             <p>{{ paciente.id }} - {{ paciente.nome }}</p>
+            {% if perms.consultas.view_paciente %}
             <a class="btn btn-secondary btn-lg" role="button"
-            href="{% url 'consultas:read_paciente' paciente.id %}">Detalhar</a>
+                href="{% url 'consultas:read_paciente' paciente.id %}">Detalhar</a>
+            {% endif %}
+
+            {% if perms.consultas.delete_paciente %}
+            <a class="btn btn-light btn-lg" role="button"
+                href="{% url 'consultas:delete_pacientes' paciente.id %}">Deletar</a>
+            {% endif %}
+
+            {% if perms.consultas.change_paciente %}
+            <a class="btn btn-light btn-lg" role="button"
+                href="{% url 'consultas:update_pacientes' paciente.id %}">Editar</a>
+            {% endif %}
         {% endfor %}
     {% endif %}
 <p></p>
+{% if perms.consultas.add_paciente %}
 <a class="btn btn-secondary btn-lg" role="button"
             href="{% url 'consultas:create_paciente' %}">Novo Paciente</a>
+{% endif %}
 {% endblock conteudo %}
