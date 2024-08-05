@@ -122,3 +122,5 @@ def update(request, paciente_id):
         'paciente': paci,
     }
     return render(request, 'consultas/update_paciente.html', contexto)
+    # Se o método não for POST, a view irá retornar uma página de edição do paciente
+
